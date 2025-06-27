@@ -4,7 +4,7 @@ from models.db import db
 class Musica(db.Model):
     __tablename__ = 'musica'
 
-    id_cancion = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     cancion = db.Column(db.String(100))
     artista = db.Column(db.String(100))
     album = db.Column(db.String(100))
@@ -30,14 +30,14 @@ class Musica(db.Model):
 
     def serialize(self):
         return {
-            'id_cancion': self.id_cancion,
+            'id': self.id,
             'cancion': self.cancion,
             'artista': self.artista,
             'album': self.album,
             'anio': self.anio,
             'duracion': self.duracion,
             'fecha_lanzamiento': self.fecha_lanzamiento,
-            'hora_estreno': self.hora_estreno,
+            'hora_estreno': self.hora_estreno.strftime("%H:%M:%S") if self.hora_estreno else None, # Formatea la hora para poder devolverla en formato JSON
             'descripcion': self.descripcion,
             'email_contacto': self.email_contacto,
             'activo': self.activo
