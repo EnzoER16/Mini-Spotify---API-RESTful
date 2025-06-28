@@ -38,7 +38,7 @@ def get_canciones_clasificadas():
             cortas.append(cancion.serialize())
         elif 180 <= cancion.duracion <= 240:
             medias.append(cancion.serialize())
-        elif cancion.duracion > 340:
+        elif cancion.duracion > 240:
             largas.append(cancion.serialize())
 
     resultado = {
