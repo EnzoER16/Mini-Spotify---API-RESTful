@@ -1,10 +1,9 @@
-import uuid
 from models.db import db
 
 class Musica(db.Model):
     __tablename__ = 'musica'
 
-    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    id = db.Column(db.Integer, primary_key=True)
     cancion = db.Column(db.String(100))
     artista = db.Column(db.String(100))
     album = db.Column(db.String(100))
