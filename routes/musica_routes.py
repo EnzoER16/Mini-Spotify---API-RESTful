@@ -48,3 +48,15 @@ def get_canciones_clasificadas():
     }
 
     return jsonify(resultado)
+
+@cancion.route('canciones/fecha', methods=['GET'])
+def get_canciones_por_fecha():
+    canciones = Musica.query.filter_by(activo=True).all() # Filtra las canciones que estan activas
+
+    por_anio = []
+
+    for cancion in canciones:
+        if cancion.anio <= 2021:
+            por_anio.append(cancion.serialize())
+
+    return jsonify(por_anio)
